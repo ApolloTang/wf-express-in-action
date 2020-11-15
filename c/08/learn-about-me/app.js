@@ -11,7 +11,28 @@ var setUpPassport = require("./setuppassport");
 var routes = require("./routes");
 
 var app = express();
-mongoose.connect("mongodb://localhost:27017/test");
+mongoose.connect("mongodb://localhost:27017/test", {
+  // (node:15637)
+  // DeprecationWarning: current URL string parser is deprecated, and
+  // will be removed in a future version. To use the new parser, pass
+  //  option { useNewUrlParser: true } to MongoClient.connect.
+  useNewUrlParser: true,
+
+  // (node:15637)
+  // DeprecationWarning: current Server Discovery and Monitoring engine
+  //  is deprecated, and will be removed in a future version. To use
+  //  the new Server Discover and Monitoring engine, pass option {
+  //  useUnifiedTopology: true } to the MongoClient constructor.
+  useUnifiedTopology: true,
+
+  // (node:15637)
+  // DeprecationWarning: collection.ensureIndex is deprecated. Use
+  // createIndexes instead.
+  useCreateIndex: true
+
+  // SEE: https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat
+});
+
 setUpPassport();
 
 app.set("port", process.env.PORT || 3000);
