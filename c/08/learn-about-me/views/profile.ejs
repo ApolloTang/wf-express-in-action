@@ -1,4 +1,4 @@
-<% include _header %>
+<%- include('_header') -%>
 
 <% if ((currentUser) && (currentUser.id === user.id)) { %>
   <a href="/edit" class="pull-right">Edit your profile</a>
@@ -11,4 +11,4 @@
   <p><%= user.bio %></p>
 <% } %>
 
-<% include _footer %>
+<%- include('_footer') -%>
