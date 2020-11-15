@@ -13,6 +13,9 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+// ------
+// Sets useful variables for your templates
+// ------
 router.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.errors = req.flash("error");
@@ -20,6 +23,9 @@ router.use(function(req, res, next) {
   next();
 });
 
+// ------
+// Queries the users collection, returning the newest users first
+// ------
 router.get("/", function(req, res, next) {
   User.find()
   .sort({ createdAt: "descending" })

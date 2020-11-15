@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
   bio: String
 });
 
-var noop = function() {};
+var noop = function() {}; // a do nothing fn for use w bcrypt
 
 userSchema.pre("save", function(done) {
   var user = this;
