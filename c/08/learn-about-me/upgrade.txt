@@ -2,6 +2,7 @@ bcrypt-nodejs is no longer actively maintained. Please use bcrypt
  or bcryptjs. See https://github.com/kelektiv/node.bcrypt.js/wiki/bcrypt-vs-brypt.js
  to learn more about these two options
 
+---------------------------------
 
 (node:15637)
 DeprecationWarning: current URL string parser is deprecated, and
@@ -19,4 +20,26 @@ Server started on port 3000
 (node:15637)
 DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
 
+Fix:
+mongoose.connect("mongodb://localhost:27017/test", {
+  // (node:15637)
+  // DeprecationWarning: current URL string parser is deprecated, and
+  // will be removed in a future version. To use the new parser, pass
+  //  option { useNewUrlParser: true } to MongoClient.connect.
+  useNewUrlParser: true,
+
+  // (node:15637)
+  // DeprecationWarning: current Server Discovery and Monitoring engine
+  //  is deprecated, and will be removed in a future version. To use
+  //  the new Server Discover and Monitoring engine, pass option {
+  //  useUnifiedTopology: true } to the MongoClient constructor.
+  useUnifiedTopology: true,
+
+  // (node:15637)
+  // DeprecationWarning: collection.ensureIndex is deprecated. Use
+  // createIndexes instead.
+  useCreateIndex: true
+
+  // SEE: https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat
+});
 
