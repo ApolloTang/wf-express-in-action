@@ -55,12 +55,10 @@ router.get("/signup", function(req, res) {
 });
 
 router.post("/signup", function(req, res, next) {
-
-  var username = req.body.username;
+  var username = req.body.username; // user and password are from from POST
   var password = req.body.password;
 
   User.findOne({ username: username }, function(err, user) {
-
     if (err) { return next(err); }
     if (user) {
       req.flash("error", "User already exists");
@@ -72,7 +70,6 @@ router.post("/signup", function(req, res, next) {
       password: password
     });
     newUser.save(next);
-
   });
 }, passport.authenticate("login", {
   successRedirect: "/",
