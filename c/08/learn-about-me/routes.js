@@ -18,15 +18,16 @@ function ensureAuthenticated(req, res, next) {
 // ------
 router.use(function(req, res, next) {
   res.locals.currentUser = req.user;
+          // ^^^^^^^^^^^
+          // if authenticated, every view will have access to
+          // currentUser, which pulls from req.user, which is populated by Passport.
   res.locals.errors = req.flash("error");
   res.locals.infos = req.flash("info");
   next();
 });
 
-// ------
-// Queries the users collection, returning the newest users first
-// ------
 router.get("/", function(req, res, next) {
+  // Queries the users collection, returning the newest users first
   User.find()
   .sort({ createdAt: "descending" })
   .exec(function(err, users) {
