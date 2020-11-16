@@ -46,9 +46,9 @@ app.use(bodyParser.urlencoded({ extended: false })); // extended=false so parsin
 app.use(cookieParser());
 
 app.use(session({
-  secret: "LUp$Dg?,I#i&owP3=9su+OB%`JgL4muLF5YJ~{;t",
-  resave: true,
-  saveUninitialized: true
+  secret: "LUp$Dg?,I#i&owP3=9su+OB%`JgL4muLF5YJ~{;t", // Deters hackers from hacking into users’ cookies, Needs to be a bunch of random characters (not necessarily what are shown here)
+  resave: true, // When it’s set to true, the session will be updated even when it hasn’t been modified.
+  saveUninitialized: true // resets sessions that are uninitialized
 }));
 
 app.use(flash());
