@@ -5,7 +5,7 @@ var flash = require("connect-flash");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var path = require("path");
-var session = require("express-session");
+var expressSession = require("express-session");
 
 var setUpPassport = require("./setuppassport");
 var routes = require("./routes");
@@ -45,11 +45,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false })); // extended=false so parsing is simpler n secure
 app.use(cookieParser());
 
-app.use(session({
+const sessionOptions = {
   secret: "LUp$Dg?,I#i&owP3=9su+OB%`JgL4muLF5YJ~{;t", // Deters hackers from hacking into users’ cookies, Needs to be a bunch of random characters (not necessarily what are shown here)
   resave: true, // When it’s set to true, the session will be updated even when it hasn’t been modified.
   saveUninitialized: true // resets sessions that are uninitialized
-}));
+};
+app.use(expressSession(sessionOptions));
 
 app.use(flash());
 
